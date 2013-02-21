@@ -10,14 +10,13 @@ Though tmux is an amazing tool, some of the parts of it are low-level. As you ca
 
 Once you've solved the "shared tmux" problem, that's actually the easier part of it. This script goes a little further and helps with the user and SSH connection problems.
 
-== Install
-
-    gem install tweemux
-    tweemux install # puts itself in /usr/local/bin, so guests can run it
-
 == Host Usage
 
-First, create the user on your machine:
+For starters:
+
+    gem install tweemux
+
+Then, create the user on your machine:
 
     tweemux bro lwoodson # when their Github username == desired Unix username
     # -or-
