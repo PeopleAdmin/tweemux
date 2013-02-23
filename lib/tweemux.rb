@@ -48,7 +48,13 @@ class Tweemux
       warn '# failed ☹'.color :error
       ctrl_c = 'Ctrl+c'.color :keypress, :prompt
       enter = 'Enter'.color :keypress, :prompt
-      warn "Hit #{ctrl_c} to stop, or #{enter} to continue anyway".color :prompt
+      pry_time = 'p'.color :keypress, :prompt
+      # TODO: work pry-rescue into this so we can offer a 'try-again'
+      # See also: https://github.com/ConradIrwin/pry-rescue/issues/29
+      warn <<-EOT.color :prompt
+         To give up, hit: #{ctrl_c}
+      To run anyway, hit: #{enter}
+      EOT
       $stdin.readline
     end
 
