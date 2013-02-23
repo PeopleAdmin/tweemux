@@ -28,4 +28,13 @@ class TweemuxTest < MiniTest::Unit::TestCase
   else
     fail
   end
+
+  def test_ruby18
+    Dir['{bin,lib}/*.rb'].each do |e|
+      fail "ruby18 hates #{e}" unless "Syntax OK\n" == `ruby18 -c #{e}`
+    end
+  rescue Errno::ENOENT => e
+    skip 'Needs ruby18 executable in $PATH' if e.message[/ruby18/]
+    raise e
+  end
 end
