@@ -13,12 +13,19 @@ class TweemuxTest < MiniTest::Unit::TestCase
 
   def test_host
     got = []
-    Tweemux.stub :explained_run, -> *a { got += a } do
+    Tweemux.stub :explained_run, -> *a { got << a } do
       Tweemux.run 'host'
     end
     assert_equal [
       %w(tmux -S /tmp/tweemux.sock start-server),
       %w(tmux -S /tmp/tweemux.sock new-session),
-    ], got
+    ], got.map(&:first)
+  end
+
+  def test_explained_run_strictness
+    Tweemux.explained_run 'echo > /tmp/hi', 'should not shell-interpret'
+  rescue Tweemux::DubiousSystemInvocation
+  else
+    fail
   end
 end
