@@ -38,7 +38,7 @@ Then finally:
 == Guest Usage
 
     gem install tweemux
-    tweemux sharpsaw.org 3322 # uses the 'forward' set up from above
+    tweemux at sharpsaw.org 3322 # uses the 'forward' set up from above
 
 == Going Further
 
