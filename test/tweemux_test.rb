@@ -13,13 +13,19 @@ class TweemuxTest < MiniTest::Unit::TestCase
 
   def test_host
     got = []
+    thread_spawned = false
     Tweemux.stub :explained_run, -> *a { got << a } do
-      Tweemux.run 'host'
+      Thread.stub :new, -> { thread_spawned = true } do
+        Tweemux.stub :explain, -> *a { } do
+          Tweemux.run 'host'
+        end
+      end
     end
     assert_equal [
       %w(tmux -S /tmp/tweemux.sock start-server),
       %w(tmux -S /tmp/tweemux.sock new-session),
     ], got.map(&:first)
+    assert thread_spawned
   end
 
   def test_explained_run_strictness
