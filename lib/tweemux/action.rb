@@ -10,6 +10,10 @@ class Tweemux
 
     def run args; raise 'Unimplemented' end
 
+    # Hrm. This is kinda gross, but I feel like it cleans up the subclasses
+    def explained_run *a; self.class.explained_run *a end
+    def tmux_S *a; self.class.tmux_S *a end
+
     class DubiousSystemInvocation < RuntimeError; end
     class << self
       def tmux_S args, why
