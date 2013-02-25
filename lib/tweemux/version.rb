@@ -1,0 +1,3 @@
+class Tweemux
+  VERSION = '0.0.1'
+end
