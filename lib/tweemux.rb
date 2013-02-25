@@ -33,6 +33,9 @@ class Tweemux
     def background_chmod_a_rw
       chmod_a_rw = %w(chmod a+rw /tmp/tweemux.sock)
       explain chmod_a_rw, 'makes the shared socket shareable'
+      # FIXME: A better way to do this would be to spawn a window in the new
+      # session which shows the output of a failure, if any, and otherwise just
+      # does this chmod at the right time
       Thread.start do
         sleep SECONDS_BEFORE_CHMOD
         system_or_raise chmod_a_rw
