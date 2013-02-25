@@ -1,4 +1,6 @@
 # encoding: utf-8
+
+require 'tweemux/action'
 class Tweemux
   class DubiousSystemInvocation < RuntimeError; end
 
@@ -21,7 +23,9 @@ class Tweemux
     end
 
     def understand args
-      true
+      action = args.shift
+      klass = Tweemux::Action.const_get action.capitalize
+      klass.new args
     end
 
     def background_chmod_a_rw
