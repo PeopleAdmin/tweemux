@@ -6,8 +6,12 @@ class TweemuxTest < MiniTest::Unit::TestCase
     claimed_working.each do |line|
       line.sub! /#.*/, ''
       fake_argv = line.sub(/^\s*tweemux/, '').split.map{|e| e.strip}
-      runner = Tweemux.understand fake_argv
-      assert runner.respond_to?(:call), "callable understanding of #{line}"
+      action = Tweemux.understand fake_argv
+      got_run = false
+      action.stub :run, -> *a { got_run = true } do
+        action.call
+      end
+      assert got_run, "running action for #{line}"
     end
   end
 

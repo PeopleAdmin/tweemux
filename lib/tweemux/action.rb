@@ -1,12 +1,12 @@
 class Tweemux
   class Action
-    def initialize args
-      @args = args
-    end
+    def initialize args; @args = args end
 
     def call
-      raise 'Unimplemented'
+      run @args
     end
+
+    def run args; raise 'Unimplemented' end
   end
 end
 
