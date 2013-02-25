@@ -15,31 +15,8 @@ class TweemuxTest < MiniTest::Unit::TestCase
     end
   end
 
-  def noop
-    got = []
-    thread_spawned = false
-    Tweemux.stub :explained_run, -> *a { got << a } do
-      Thread.stub :start, -> { thread_spawned = true } do
-        Tweemux.stub :explain, -> *a { } do
-          Tweemux.run 'host'
-        end
-      end
-    end
-    assert_equal [
-      %w(tmux -S /tmp/tweemux.sock start-server),
-      %w(tmux -S /tmp/tweemux.sock new-session),
-    ], got.map(&:first)
-    assert thread_spawned
-  end
-
-  def test_explained_run_strictness
-    Tweemux.explained_run 'echo > /tmp/hi', 'should not shell-interpret'
-  rescue Tweemux::DubiousSystemInvocation
-  else
-    fail
-  end
-
   def test_ruby18
+    # TODO: optimize this by running them all in one command
     Dir['{bin,lib}/*.rb'].each do |e|
       fail "ruby18 hates #{e}" unless "Syntax OK\n" == `ruby18 -c #{e}`
     end
