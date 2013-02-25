@@ -15,7 +15,7 @@ class TweemuxTest < MiniTest::Unit::TestCase
     got = []
     thread_spawned = false
     Tweemux.stub :explained_run, -> *a { got << a } do
-      Thread.stub :new, -> { thread_spawned = true } do
+      Thread.stub :start, -> { thread_spawned = true } do
         Tweemux.stub :explain, -> *a { } do
           Tweemux.run 'host'
         end

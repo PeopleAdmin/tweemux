@@ -6,13 +6,18 @@ class Tweemux
   # OS X, it's sometimes definitely more than 3.
   SECONDS_BEFORE_CHMOD = 5
 
+  SOCK = '/tmp/tweemux.sock'
+
   class << self
     def run args
-      explained_run %w(tmux -S /tmp/tweemux.sock start-server),
-        'brings up the tmux process'
+      tmux_S %w'start-server', 'brings up the tmux process'
       background_chmod_a_rw
-      explained_run %w(tmux -S /tmp/tweemux.sock new-session),
-        'starts sesssion "1"'
+      tmux_S %w'new-session', 'starts sesssion "1"'
+    end
+
+    def tmux_S args, why
+      cmd = %W(tmux -S #{SOCK}) + args
+      explained_run cmd, why
     end
 
     def understand args
