@@ -8,6 +8,8 @@ class Tweemux
       run @args
     end
 
+    class FunkyUsage < RuntimeError; end
+
     def run args; raise 'Unimplemented' end
 
     # Hrm. This is kinda gross, but I feel like it cleans up the subclasses

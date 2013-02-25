@@ -11,8 +11,12 @@ class String
 
     :keypress => 157,
     :prompt => 35,
+    :number => 48,
+    :keyword => 60,
+    :host => 148,
 
     :error => 160,
+    :error_explanation => 178,
     :default => 7
   }
   def color this_color, end_on = :default
