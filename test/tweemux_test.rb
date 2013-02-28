@@ -16,6 +16,8 @@ class TweemuxTest < MiniTest::Unit::TestCase
   end
 
   def test_ruby18
+    return warn "Needs a working ruby18 executable in $PATH".color(:orange) \
+      unless ruby18ok 'test/ok18.rb'
     # TODO: optimize this by running them all in one command
     Dir['{bin,lib}/*.rb'].each do |e|
       fail "ruby18 hates #{e}" unless "Syntax OK\n" == `ruby18 -c #{e}`
@@ -23,5 +25,9 @@ class TweemuxTest < MiniTest::Unit::TestCase
   rescue Errno::ENOENT => e
     skip 'Needs ruby18 executable in $PATH' if e.message[/ruby18/]
     raise e
+  end
+
+  def ruby18ok args
+    "Syntax OK\n" == `ruby18 -c #{args}`
   end
 end
