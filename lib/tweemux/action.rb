@@ -39,7 +39,7 @@ class Tweemux
         end
 
         def highlight_command arr
-          ':Running'.color(:middle_blue) \
+          ': Running'.color(:middle_blue) \
             + '; '.color(:gray245) \
             + colorize_tmux_command(arr)
         end
