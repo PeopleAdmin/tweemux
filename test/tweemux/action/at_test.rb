@@ -11,6 +11,6 @@ class Tweemux::Action::AtImplicitPortTest  < MiniTest::Unit::TestCase
   include TweemuxActionHelper
   def argv; %w'at sharpsaw.org' end
   def expected_commands
-    [ %w(ssh sharpsaw.org -p22 -t tmux -S /tmp/tweemux.sock attach) ]
+    [ %w(ssh sharpsaw.org -t tmux -S /tmp/tweemux.sock attach) ]
   end
 end
