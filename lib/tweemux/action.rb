@@ -35,7 +35,7 @@ class Tweemux
         end
 
         def system_or_raise cmd
-          system *cmd or pseudo_restarts(*cmd)
+          system *cmd or pseudo_restarts cmd.join(' ')
         end
 
         def highlight_command arr
@@ -65,13 +65,22 @@ class Tweemux
           warn '# failed ☹'.color :error
           ctrl_c = 'Ctrl+c'.color :keypress, :prompt
           enter = 'Enter'.color :keypress, :prompt
+          letter_p = 'p'.color :keypress, :prompt
           # TODO: work pry-rescue into this so we can offer a 'try-again'
           # See also: https://github.com/ConradIrwin/pry-rescue/issues/29
-          warn <<-EOT.color :prompt
-  To give up, hit: #{ctrl_c}
+          print <<-EOT.chomp.color :prompt
+   To give up, hit: #{ctrl_c}
 To run anyway, hit: #{enter}
+  To pry from here: #{letter_p}
+> 
           EOT
-          $stdin.readline
+          answer = $stdin.readline
+          if answer[/p/i]
+            notice = 'I will be very impressed if this is useful...'
+            warn notice.color :error
+            require 'pry'
+            binding.pry
+          end
         end
 
         def load_all!
