@@ -1,14 +1,24 @@
 ![tweemux: For Remote Pair Programming](img/tweemux.png)
 
-For Remote Pair Programming: A handy script to create-or-join a world-readable tmux session (smaller than wemux)
+For Remote Pair Programming: A handy script to create-or-join a world-readable tmux session
 
-One of the aims of this script is to be convenient. Another of its aims is to be transparent (read: loud) about what it's doing. None of the parts of this are inherently complicated, and any of them is prone to need additional debugging, so it's best that `tweemux`'s behavior is visible.
+One of the aims of this script is to be convenient. Another of its aims is to be transparent (read: loud) about what it's doing. None of the parts of this are inherently complicated, and we'd like to make sure you can wean yourself off of this if you ever want to.
 
 ## Problem
 
-Though tmux is an amazing tool, some of the parts of it are low-level. As you can see from the tmux portion of this script's source, there isn't much you have to do to get a shared session, but it's still more than you want you or your pair to think about when you're trying to work.  The `wemux` script is similar to this, but I don't care for its complexity/optionality/config (and the thing that really bothers me is that it has a 'read-only' mode that only is read-only because of the command used to connect to the socket — the socket itself is still `chmod 777`, so you might as well be honest about the idea that the session could be connected by any user in writeable mode).
+Though tmux is an amazing tool, some of the setup for a shared session over the Internet can be tricky, at first. As you will see from the commands output of this script, it is not utterly difficult, but it's still usually more than you want you or your pair to think about when you're trying to work.
 
-Once you've solved the "shared tmux" problem, that's actually the easier part of it. This script goes a little further and helps with the user and SSH connection problems.
+## Guest Usage
+
+    gem install tweemux
+    tweemux at somehost.org
+    # or, specify a port:
+    tweemux at somehost.org 3322
+
+If all goes well, that's it!
+
+Now, time to roll up sleeves and get into the details of how to roll out a red
+carpet like this for one's pair.
 
 ## Host Usage
 
@@ -18,21 +28,21 @@ For starters:
 
 Then, create the user on your machine (this varies. On decent Unices, it's `adduser` or `useradd`. On OS X you can either get an [adduser-like script](https://raw.github.com/sharpsaw/mac-dots/master/bin/adduser) or do it through the System Preferences GUI).
 
-If you're on a machine behind a firewall, use one that is *not* behind a firewall that you also have SSH access to (in this example, sharpsaw.org is the one not behind the firewall):
+If you're on a machine behind a firewall, you have these options:
+
+* VPN. If you're on a business network with your pair, you probably can already `ping` each other's machines. Easy stuff, then.
+* Directly open a port, such as going to your router config (perhaps at http://10.0.0.1 ?) and setting it to pass the external IP (see `curl ifconfig.me` or http://whatismyip.com ) through to your local box. This is smpler once you get it set up, as long as your location is stable and you have control over the router.
+* Use a Virtual machine on the web, and you both ssh into that. Can work very well, and has other advantages (such as the ability to trash the machine all you want and just rebuild it later). The big downside is that you now have two lagged users rather than only one.
+* SSH port forward. This is my favorite, but the downside is that you have to have access to a shell account somewhere public. Tweemux provides a tool for this:
+
+In this example, sharpsaw.org is a machine that is not behind the firewall:
 
     tweemux forward local 22 from sharpsaw.org 3322
-    # ^ Or, if you're in control of the router, you can just open a port and
-    # point your pair at your actual IP (`curl ifconfig.me` comes in handy for
-    # finding the public IP)
 
-Then finally:
+Then, after your pair can get to your SSHD socket, finally:
 
     tweemux host
-
-## Guest Usage
-
-    gem install tweemux
-    tweemux at sharpsaw.org 3322 # uses the 'forward' set up from above
+    # (now they're ready to `tweemux at <yourhost> <your-port>`)
 
 ## Going Further
 
@@ -44,9 +54,10 @@ If you don't have a public SSH account (like the way I use sharpsaw.org, above),
 
 ## TODO
 
-    tweemux bro lwoodson # when their Github username == desired Unix username
+    tweemux keys lwoodson # when their Github username == desired Unix username
     # -or-
-    tweemux bro cirwin github: ConradIrwin
-    # -or-
-    tweemux sis ghopper # synonym for 'bro'
+    tweemux keys cirwin github: ConradIrwin
 
+## Thanks to
+
+The `wemux` script, which is similar to this, but has a different scope of features.
