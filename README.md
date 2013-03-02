@@ -52,11 +52,19 @@ It's also nice to share a windowing environment session as well. For example, th
 
 If you don't have a public SSH account (like the way I use sharpsaw.org, above), let me know ( i-am-stuck@sharpsaw.org ). We'll solve that.
 
+## Comms
+
+Once you've shared the tmux session, you've got a lot. But you still need more bandwidth with your pair.
+
+There are a few solutions:
+
+- *Use inline comments* to type back and forth. Properly configured shells can also allow you to prefix with a `#` and say whatever you want. The downside is that only one person can be typing at any one time. A custom that helps is if you type what you're saying, then leave a trailing `#` with no space after it to indicate that you're done and waiting on your pair to type. This is a bit crufty, but some people are shy and only want to do the tmux share.
+- *Use IRC*. If you make a tmux pane and connect it to IRC (or some other text-based chat), both local users plus that shared session can all join the same channel. This provides the person that isn't driving the keyboard to switch to their local chat window and type something for the other person to see. (TODO: build this in as a tweemux feature).
+- *Use voice*. A much more powerful way to work. You "can" use Skype, but it's a commercial product and is continuously flaky. A better alternative is to sign up for a [SIP account](https://ekiga.net/), then get a [SIP client](https://en.wikipedia.org/wiki/List_of_SIP_software#Clients). For Linux, I use (Ekiga)[https://en.wikipedia.org/wiki/Ekiga), and for OS X I use [Telephone.app](http://www.tlphn.com/). Don't forget, if you can't get the Internetty stuff to work, there's always calling each other on cell phones.
+
 ## TODO
 
-    tweemux keys lwoodson # when their Github username == desired Unix username
-    # -or-
-    tweemux keys cirwin github: ConradIrwin
+Automate the user installation and key addition.
 
 ## Thanks to
 
