@@ -16,14 +16,19 @@ class TweemuxTest < MiniTest::Unit::TestCase
   end
 
   def test_ruby18
-    return warn "Needs a working ruby18 executable in $PATH".color(:orange) \
-      unless ruby18ok 'test/ok18.rb'
-    # TODO: optimize this by running them all in one command
-    Dir['{bin,lib}/*.rb'].each do |e|
-      fail "ruby18 hates #{e}" unless "Syntax OK\n" == `ruby18 -c #{e}`
-    end
+    got = `ruby18 -Ilib -rtweemux -e1`
+    fail "ruby18 hates us: #{got}" unless got.empty?
   rescue Errno::ENOENT => e
-    skip 'Needs ruby18 executable in $PATH' if e.message[/ruby18/]
+    # TODO: colorize
+    skip <<-EOT if e.message[/ruby18/]
+This test needs a 'ruby18' executable in $PATH
+If using rbenv, one such script might be:
+
+#!/bin/sh -e
+eval "$(rbenv init -)"
+rbenv shell 1.8.7-p371
+ruby "$@"
+    EOT
     raise e
   end
 
