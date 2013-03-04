@@ -2,12 +2,17 @@ require_relative 'test_helper'
 
 module TweemuxActionHelper
   def test_run
+    assert_equal stubbed_run.to_yaml, expected_commands.to_yaml
+  end
+
+  def stubbed_run
     explained_runs = []
-    Tweemux::Action.stub :explained_run, -> *a { explained_runs << a } do
+    Tweemux::Action.stub :explained_run, -> what, why {
+      explained_runs << [ what, why ]
+    } do
       Tweemux.run argv
     end
-    got = explained_runs.map &:first
-    assert_equal got.to_yaml, expected_commands.to_yaml
+    explained_runs.map &:first # drop the explanations
   end
 
   def bad_runs; [] end

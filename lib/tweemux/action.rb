@@ -9,12 +9,21 @@ class Tweemux
     end
 
     class FunkyUsage < RuntimeError; end
+    class NoSuchHomeDir < RuntimeError; end
+    class NoRestartsException < RuntimeError; end
 
     def run args; raise 'Unimplemented' end
 
-    # Hrm. This is kinda gross, but I feel like it cleans up the subclasses
-    def explained_run *a; self.class.explained_run *a end
-    def tmux_S *a; self.class.tmux_S *a end
+    # Hrm. These are kinda gross, but I feel like it cleans up the subclasses
+    def explained_run what, why
+      self.class.explained_run what, why
+    end
+    def explained_run_as who, what, why
+      self.class.explained_run_as who, what, why
+    end
+    def tmux_S *a
+      self.class.tmux_S *a
+    end
 
     class DubiousSystemInvocation < RuntimeError; end
     class << self
@@ -28,6 +37,11 @@ class Tweemux
           if what.is_a? String
             explain what, why
             system_or_raise what
+        end
+
+        def explained_run_as user, what, why
+          full_command = ['sudo', '-u', user] + what
+          explained_run full_command, why
         end
 
         def explain what, why

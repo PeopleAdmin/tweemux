@@ -28,7 +28,16 @@ For starters:
 
 Then, create the user on your machine (this varies. On decent Unices, it's `adduser` or `useradd`. On OS X you can either get an [adduser-like script](https://raw.github.com/sharpsaw/mac-dots/master/bin/adduser) or do it through the System Preferences GUI).
 
-If you're on a machine behind a firewall, you have these options:
+Now, you can install the 'keyholes' for this user from Github. This means they
+will be able to get in without manually typing a password, just like when they
+`git push` to Github:
+
+    tweemux hubkey cirwin github: ConradIrwin
+    # or, if their Unix username is their Github username, there's a shorthand:
+    tweemux hubkey rking
+
+Now, they'll need a route to your sshd port. If you're on a machine behind a
+firewall, you have these options:
 
 * VPN. If you're on a business network with your pair, you probably can already `ping` each other's machines. Easy stuff, then.
 * Directly open a port, such as going to your router config (perhaps at http://10.0.0.1 ?) and setting it to pass the external IP (see `curl ifconfig.me` or http://whatismyip.com ) through to your local box. This is smpler once you get it set up, as long as your location is stable and you have control over the router.
@@ -64,7 +73,21 @@ There are a few solutions:
 
 ## TODO
 
-Automate the user installation and key addition.
+# PeopleAdmin/tweemux open issues
+* 18: Rogue Mode 3
+* 17: Mention Google Voice/Hangouts 1
+* 16: Promote regular tmux session to tweemux
+* 15: Guest usage to connect to a different socket path
+* 14: Add pseudo_restart of 'retry'
+* 13: $TERM
+* 12: Mosh possible
+* 11: Basics of Tmux
+*  8: Port fw without ssh [enhancement] [question]
+*  7: adduser/useradd call [enhancement]
+*  6: Mac setup instructions [easy-peasy] [Mac]
+*  5: log [enhancement] [easy-peasy] [must-have]
+*  4: brew install someurl [Mac]
+*  1: --help and help [easy-peasy] [must-have]
 
 ## Thanks to
 

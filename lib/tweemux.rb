@@ -8,6 +8,9 @@ class Tweemux
     def run args
       action = understand args
       action.call
+    rescue Tweemux::Action::NoRestartsException => e
+      warn e.message.color :error
+      exit 1
     end
 
     def understand args
