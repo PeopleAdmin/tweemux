@@ -81,6 +81,8 @@ To run anyway, hit: #{enter}
             require 'pry'
             binding.pry
           end
+        rescue Interrupt
+          exit 2
         end
 
         def load_all!
