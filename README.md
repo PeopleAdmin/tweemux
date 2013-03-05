@@ -26,7 +26,10 @@ For starters:
 
     gem install tweemux
 
-Then, create the user on your machine (this varies. On decent Unices, it's `adduser` or `useradd`. On OS X you can either get an [adduser-like script](https://raw.github.com/sharpsaw/mac-dots/master/bin/adduser) or do it through the System Preferences GUI).
+Then, create the user on your machine (this varies. On decent Unices, it's
+`adduser` or `useradd`. On OS X you can either get an [adduser-like
+script](https://raw.github.com/sharpsaw/mac-dots/master/bin/adduser) or do it
+through the System Preferences GUI).
 
 Now, you can install the 'keyholes' for this user from Github. This means they
 will be able to get in without manually typing a password, just like when they
@@ -37,12 +40,8 @@ will be able to get in without manually typing a password, just like when they
     tweemux hubkey rking
 
 Now, they'll need a route to your sshd port. If you're on a machine behind a
-firewall, you have these options:
-
-* VPN. If you're on a business network with your pair, you probably can already `ping` each other's machines. Easy stuff, then.
-* Directly open a port, such as going to your router config (perhaps at http://10.0.0.1 ?) and setting it to pass the external IP (see `curl ifconfig.me` or http://whatismyip.com ) through to your local box. This is smpler once you get it set up, as long as your location is stable and you have control over the router.
-* Use a Virtual machine on the web, and you both ssh into that. Can work very well, and has other advantages (such as the ability to trash the machine all you want and just rebuild it later). The big downside is that you now have two lagged users rather than only one.
-* SSH port forward. This is my favorite, but the downside is that you have to have access to a shell account somewhere public. Tweemux provides a tool for this:
+firewall, you have these options: Use a VPN, directly open a port, use a host
+on the Internet, or SSH port forward. Tweemux provides a tool for this last one:
 
 In this example, sharpsaw.org is a machine that is not behind the firewall:
 
@@ -56,6 +55,14 @@ Then, after your pair can get to your SSHD socket, finally:
 ## Going Further
 
 It's also nice to share a windowing environment session as well. For example, the "Guest" can host a VNC that you, as the tweemux host, can then connect to. This allows you to "point" at things with the mouse, and to share web browsing, etc.
+
+## Details about "Route to your sshd port", above
+
+Your options are:
+* VPN. If you're on a business network with your pair, you probably can already `ping` each other's machines. Easy stuff, then.
+* Directly open a port, such as going to your router config (perhaps at http://10.0.0.1 ?) and setting it to pass the external IP (see `curl ifconfig.me` or http://whatismyip.com ) through to your local box. This is smpler once you get it set up, as long as your location is stable and you have control over the router.
+* Use a machine on the Internet, that you both ssh into that. Can work very well, but the big downside is that you now have two lagged users rather than only one.
+* SSH port forward. This is my favorite, but the downside is that you have to have access to a shell account somewhere public.
 
 ## No Public Box?
 

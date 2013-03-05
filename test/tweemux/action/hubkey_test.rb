@@ -3,7 +3,7 @@ require 'ostruct'
 
 class Tweemux::Action::HubkeyTest < MiniTest::Unit::TestCase
   include TweemuxActionHelper
-  def argv; %w(bro hi HiOnGithub) end
+  def argv; %w(hubkey hi HiOnGithub) end
   def test_run
     commands_run = nil
     with_fake_expand_path expecting: '~hi', expanding_to: '/home/hi' do
@@ -20,17 +20,18 @@ class Tweemux::Action::HubkeyTest < MiniTest::Unit::TestCase
   end
 
   def test_run_will_not_clobber_auth_keys_file
+    warning = nil
     with_fake_expand_path expecting: '~hi', expanding_to: '/home/hi' do
       File.stub :exists?, -> path {
         assert_equal '/home/hi/.ssh/authorized_keys', path
         true
       } do
-        stubbed_run
+        Tweemux.stub :die, -> msg { warning = msg } do
+          stubbed_run
+        end
       end
     end
-    fail "Shouldn't get here"
-  rescue Tweemux::Action::NoRestartsException => e
-    assert_match /refusing to overwrite.*authorized_keys/i, e.message
+    assert_match /refusing to overwrite.*authorized_keys/i, warning
   end
 
   def with_fake_expand_path args

@@ -9,11 +9,17 @@ class Tweemux
       action = understand args
       action.call
     rescue Tweemux::Action::NoRestartsException => e
-      warn e.message.color :error
+      die e.message.color :error
+    end
+
+    def die msg
+      warn msg
       exit 1
     end
 
     def understand args
+      # dash args are out of fashion!
+      args = ['Help'] if args.empty? or args.first[/^-/]
       action = args.shift
       klass = Tweemux::Action.const_get action.capitalize
       klass.new args

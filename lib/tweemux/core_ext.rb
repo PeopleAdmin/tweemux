@@ -2,8 +2,8 @@ class String
   # Pallete viewable from:
   #   https://github.com/sharpsaw/tmux-dots/blob/master/bin/colortest
   COLORS = {
-    :middle_blue => 69,
-    :brighty_blue => 39,
+    :middle_blue => 69, :heading => 69,
+    :brighty_blue => 39, :command => 39,
     :gray245 => 245,
     :orange => 172,
     :pale_yellow => 180,
