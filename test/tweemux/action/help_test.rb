@@ -10,7 +10,7 @@ class Tweemux::Action
         assert_equal stubbed_run.to_yaml, expected_commands.to_yaml
       end
       assert_match /Guest Usage/i, err
-      assert_match /tweemux at/, err
+      assert_match /tweemux on/, err
       assert_match /Host Usage/i, err
       assert_match /tweemux host/, err
       refute_match /Problem/i, err

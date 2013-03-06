@@ -11,9 +11,9 @@ Though tmux is an amazing tool, some of the setup for a shared session over the 
 ## Guest Usage
 
     gem install tweemux
-    tweemux at somehost.org
+    tweemux on somehost.org
     # or, optionally, specify a user and port:
-    tweemux at someuser@somehost.org 3322
+    tweemux on someuser@somehost.org 3322
 
 That should be all it takes for the guest to get started!
 
@@ -49,7 +49,7 @@ In this example, sharpsaw.org is a machine that is not behind the firewall:
 Then, after your pair can get to your SSHD socket, finally:
 
     tweemux host
-    # (now they're ready to `tweemux at <yourhost> <your-port>`)
+    # (now they're ready to `tweemux on <yourhost> <your-port>`)
 
 ## Going Further
 
@@ -59,7 +59,7 @@ It's also nice to share a windowing environment session as well. For example, th
 
 ### Tip: ~/.ssh/config
 
-    tweemux at someuser@somehost.org 3322
+    tweemux on someuser@somehost.org 3322
 
 Then you might consider doing adding a some ~/.ssh/config goodness:
 
@@ -70,7 +70,7 @@ Then you might consider doing adding a some ~/.ssh/config goodness:
 
 Now you're down to just:
 
-    tweemux at somehost.org
+    tweemux on somehost.org
 
 ## Details about "Route to your sshd port", above
 
