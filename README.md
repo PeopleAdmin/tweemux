@@ -12,13 +12,12 @@ Though tmux is an amazing tool, some of the setup for a shared session over the 
 
     gem install tweemux
     tweemux at somehost.org
-    # or, specify a port:
-    tweemux at somehost.org 3322
+    # or, optionally, specify a user and port:
+    tweemux at someuser@somehost.org 3322
 
-If all goes well, that's it!
+That should be all it takes for the guest to get started!
 
-Now, time to roll up sleeves and get into the details of how to roll out a red
-carpet like this for one's pair.
+Now, time to roll up sleeves and get into the details of the other end: hosting.
 
 ## Host Usage
 
@@ -54,7 +53,24 @@ Then, after your pair can get to your SSHD socket, finally:
 
 ## Going Further
 
+### GUI sharing
+
 It's also nice to share a windowing environment session as well. For example, the "Guest" can host a VNC that you, as the tweemux host, can then connect to. This allows you to "point" at things with the mouse, and to share web browsing, etc.
+
+### Tip: ~/.ssh/config
+
+    tweemux at someuser@somehost.org 3322
+
+Then you might consider doing adding a some ~/.ssh/config goodness:
+
+    Host sh
+      Hostname somehost
+      User someuser
+      port 3322
+
+Now you're down to just:
+
+    tweemux at somehost.org
 
 ## Details about "Route to your sshd port", above
 
