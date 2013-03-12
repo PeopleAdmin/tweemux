@@ -18,6 +18,7 @@ class Tweemux
     end
 
     def understand args
+      args = ['Version'] if args.first[/^--?v/i]
       # dash args are out of fashion!
       args = ['Help'] if args.empty? or args.first[/^-/]
       action = args.shift
