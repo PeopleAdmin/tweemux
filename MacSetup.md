@@ -54,11 +54,24 @@ Then:
 
 ![Screenshot of Create Account steps](doc-img/osx/create-user.jpg)
 
-You probably won't need a known password for them, since it's nicer and more
-secure to use SSH keys.
+Clicking the key brings up the Password Assistant. Use it to set a large random
+password: copy the generated password from the Suggestion field and paste it
+into the two password fields. We won't need to keep track of this password,
+since all authentication will be done with SSH keys.
+
+If you're working with a user that doesn't have public SSH keys (i.e., they
+don't have a working Github account), then you can always fall back to password
+access. But you have to make fun of them every time they login, so they learn
+to not be lame. =P
+
+![Screenshot of Password Assistant](doc-img/osx/password-assistant.png)
 
 At this point you're on track for the remainder of
 [Host Setup](https://github.com/peopleadmin/tweemux#host-usage).
-Quickref for those who already read that doc: Do `tweemux hubkey unixuser
-github: githubuser` then `tweemux forward …` to get a public key then `tweemux
-log` to watch the connection come in the first time.
+
+Quickref for those who already read that doc:
+
+tweemux hubkey unixuser github: githubuser # to get their pubkeys
+tweemux forward … # to get a public port
+tweemux host # to start the shareable session
+tweemux log # to watch them come in. Now you can have them `tweemux on …`
