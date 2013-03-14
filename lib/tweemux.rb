@@ -1,3 +1,4 @@
+require 'tweemux/version'
 require 'tweemux/action'
 require 'tweemux/core_ext'
 
