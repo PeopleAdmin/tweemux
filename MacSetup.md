@@ -51,7 +51,7 @@ Add a new user by clicking on the little `[+]` near the bottom left.
 
 Then:
 
-![Screenshot of Create Account steps](doc-img/osx/create-user.png)
+![Screenshot of Create Account steps](doc-img/osx/create-user.jpg)
 You probably won't need a known password for them, since it's nicer and more
 secure to use SSH keys.
 
