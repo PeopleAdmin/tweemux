@@ -19,7 +19,7 @@ On the left you'll see a list of services. In the middle is one that says
 
 First unlock n00b mode. You know what you're doing.
 
-![Screenshot of the Padlock unlocking](doc-img/osx/unlock-n00b-mode.png)
+![Screenshot of the Padlock unlocking](doc-img/osx/unlock-n00b-mode.jpg)
 
 You can do this next part one of two ways: keep adding to the "Only these
 users" list, or just add them all. It's your call, but in my opinion it's OK to
@@ -52,6 +52,7 @@ Add a new user by clicking on the little `[+]` near the bottom left.
 Then:
 
 ![Screenshot of Create Account steps](doc-img/osx/create-user.jpg)
+
 You probably won't need a known password for them, since it's nicer and more
 secure to use SSH keys.
 
