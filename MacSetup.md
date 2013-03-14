@@ -17,9 +17,6 @@ On the left you'll see a list of services. In the middle is one that says
 
 ![Screenshot of the "Sharing" window](doc-img/osx/remote-login.png)
 
-First unlock n00b mode. You know what you're doing.
-
-![Screenshot of the Padlock unlocking](doc-img/osx/unlock-n00b-mode.jpg)
 
 You can do this next part one of two ways: keep adding to the "Only these
 users" list, or just add them all. It's your call, but in my opinion it's OK to
@@ -44,6 +41,10 @@ Now go back to System Preferences, this time to "System → Users & Groups", or
 "System → Accounts" if on Leopard.
 
 ![Screenshot of the "System Preferences" window, pointing at "Users & Groups"](doc-img/osx/prefs-users.jpg)
+
+First unlock n00b mode. You know what you're doing.
+
+![Screenshot of the Padlock unlocking](doc-img/osx/unlock-n00b-mode.jpg)
 
 Add a new user by clicking on the little `[+]` near the bottom left.
 
