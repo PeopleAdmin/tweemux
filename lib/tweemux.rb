@@ -19,9 +19,10 @@ class Tweemux
     end
 
     def understand args
+      args = ['Help'] if args.empty?
       args = ['Version'] if args.first[/^--?v/i]
+      args = ['Help'] if args.first[/^-/]
       # dash args are out of fashion!
-      args = ['Help'] if args.empty? or args.first[/^-/]
       action = args.shift
       klass = Tweemux::Action.const_get action.capitalize
       klass.new args
