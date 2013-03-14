@@ -9,8 +9,8 @@ Working.gemspec(
   #:description => Working.readme_snippet(/== Usage/, /== TODO/),
   :description => 'tweemux host; tweemux at some_machine; plus some more stuff',
   :version => Tweemux::VERSION,
-  :authors => %w(☈king),
-  :email => 'rking-tweemux@sharpsaw.org',
-  :github => 'rking/tweemux',
+  :authors => %w(☈king Ogredude Spaceghost),
+  :email => 'muchmux@sharpsaw.org',
+  :github => 'PeopleAdmin/tweemux',
   :deps => %w(),
 )
