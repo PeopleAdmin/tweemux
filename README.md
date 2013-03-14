@@ -63,14 +63,14 @@ It's also nice to share a windowing environment session as well. For example, th
 
 Then you might consider doing adding a some ~/.ssh/config goodness:
 
-    Host sh
+    Host smh
       Hostname somehost
       User someuser
       port 3322
 
 Now you're down to just:
 
-    tweemux on somehost.org
+    tweemux on smh
 
 ## Details about "Route to your sshd port", above
 
