@@ -14,3 +14,11 @@ class Tweemux::Action::OnImplicitPortTest  < MiniTest::Unit::TestCase
     [ %w(ssh sharpsaw.org -t PATH=/usr/local/bin:/usr/bin tmux -2uS /tmp/tweemux.sock attach) ]
   end
 end
+
+class Tweemux::Action::PassThruIsCoolForOnTest  < MiniTest::Unit::TestCase
+  include TweemuxActionHelper
+  def argv; %w'on sharpsaw.org 22 -CC a' end
+  def expected_commands
+    [ %w(ssh sharpsaw.org -p22 -t PATH=/usr/local/bin:/usr/bin tmux -2uS /tmp/tweemux.sock -CC a) ]
+  end
+end
