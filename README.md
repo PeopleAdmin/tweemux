@@ -26,8 +26,12 @@ For starters:
     gem install tweemux
 
 Then, create the user on your machine. This process varies.
-* On decent Unices, it's `adduser` or `useradd` then perhaps a bit of tinkering with `/etc/ssh/sshd_config` (rking uses [this script](https://raw.github.com/sharpsaw/linux-dots/master/bin/brogrammer) to cover both of those tasks)
-* On OS X, we've prepared a [Sweet MacSetup doc](MacSetup.md) (thanks @[Ogredude](https://github.com/ogredude))
+* On decent Unices, it's `adduser` or `useradd` then perhaps a bit of tinkering
+  with `/etc/ssh/sshd_config` (rking uses
+  [this script](https://raw.github.com/sharpsaw/linux-dots/master/bin/brogrammer)
+  to cover both of those tasks)
+* On OS X, we've prepared a
+  [Sweet MacSetup doc](https://github.com/PeopleAdmin/tweemux/blob/master/MacSetup.md)
 
 Now, you can install the 'keyholes' for this user from Github. This means they
 will be able to get in without manually typing a password, just like when they
