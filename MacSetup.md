@@ -71,7 +71,7 @@ At this point you're on track for the remainder of
 
 Quickref for those who already read that doc:
 
-tweemux hubkey unixuser github: githubuser # to get their pubkeys
-tweemux forward … # to get a public port
-tweemux host # to start the shareable session
-tweemux log # to watch them come in. Now you can have them `tweemux on …`
+    tweemux hubkey unixuser github: githubuser # to get their pubkeys
+    tweemux forward … # to get a public port
+    tweemux host # to start the shareable session
+    tweemux log # to watch them come in. Now you can have them `tweemux on …`
