@@ -1,41 +1,49 @@
 ![tweemux: For Remote Pair Programming](img/tweemux.png)
 
-For Remote Pair Programming: A handy script to create-or-join a world-readable tmux session
+For remote pair programming: a handy script to sshare tmux sessions.
 
-One of the aims of this script is to be convenient. Another of its aims is to be transparent (read: loud) about what it's doing. None of the parts of this are inherently complicated, and we'd like to make sure you can wean yourself off of this if you ever want to.
+What's a tmux? @geeksam breaks it down for us: http://youtu.be/wKEGA8oEWXw
 
 ## Problem
 
-Though tmux is an amazing tool, some of the setup for a shared session over the Internet can be tricky, at first. As you will see from the commands output of this script, it is not utterly difficult, but it's still usually more than you want you or your pair to think about when you're trying to work.
+Though tmux is an amazing tool, some of the setup for a shared session over the
+Internet can be tricky, at first. As you will see from the commands output of
+this script, it is not utterly difficult, but it's still usually more than you
+want you or your pair to think about when you're trying to work.
 
-## Guest Usage
+## Install
 
     gem install tweemux
+    # then, rbenv rehash  (if using rbenv)
+
+## Guest usage
+
     tweemux on somehost.org
     # or, optionally, specify a user and port:
     tweemux on someuser@somehost.org 3322
 
-That should be all it takes for the guest to get started!
+That should be all it takes for the guest to get started! They'll be whisked
+into the shared session with no other tweaking.
 
-Now, time to roll up sleeves and get into the details of the other end: hosting.
+Since the tool aims at making it maximally-convenient for the guest, the host
+bears some extra burden.  So, it's time to roll up sleeves and get into the
+details of the other end: hosting.
 
 ## Host Usage
 
-For starters:
+First, create the guest user on your machine. It can be more convenient if you
+find out what their existing Unix username is, so they don't have to override
+it in the `tweemux on username@___` field.
 
-    gem install tweemux
-
-Then, create the user on your machine. This process varies.
-* On decent Unices, it's `adduser` or `useradd` then perhaps a bit of tinkering
-  with `/etc/ssh/sshd_config` (rking uses
-  [this script](https://raw.github.com/sharpsaw/linux-dots/master/bin/brogrammer)
-  to cover both of those tasks)
+The process for adding a user varies:
+* On many Linux/Unix systems, it's `adduser --disabled-password theguest`.
+* Elsewhere, it's usually `useradd` with a few extra steps (make a home dir, etc)
 * On OS X, we've prepared a
   [Sweet MacSetup doc](https://github.com/PeopleAdmin/tweemux/blob/master/MacSetup.md)
 
-Now, you can install the 'keyholes' for this user from Github. This means they
-will be able to get in without manually typing a password, just like when they
-`git push` to Github:
+After that, you can install the 'keyholes' for this user from Github. This
+means they will be able to get in without manually typing a password, just like
+when they `git push` to Github:
 
     tweemux hubkey cirwin github: ConradIrwin
     # or, if their Unix username is their Github username, there's a shorthand:
@@ -53,7 +61,7 @@ In this example, sharpsaw.org is a machine that is not behind the firewall:
 
 Then, after your pair can get to your SSHD socket, finally:
 
-    tweemux host # starts the shareable session
+    tweemux host # starts the session, with a world-readable /tmp/tweemux.sock
     tweemux log # Optional step: watch the ssh logs for them to come in
 
 Now they're ready to `tweemux on <yourhost> <your-port>` !
@@ -61,6 +69,11 @@ Now they're ready to `tweemux on <yourhost> <your-port>` !
 Keep in mind that most of this setup is one-time or per-user. After you get it
 going, you just rock along with a `tweemux forward…` and `tweemux host` then
 they `tweemux on`. Not much more than that!
+
+## Debugging
+
+Numerous tiny steps can go wrong. Make sure a manual `ssh -vvv` connection
+works; if not, try a ping. TODO: Make tweemux itself walk you through the steps.
 
 ## Going Further
 
@@ -70,9 +83,11 @@ It's also nice to share a windowing environment session as well. For example, th
 
 ### Tip: ~/.ssh/config
 
+To make this briefer:
+
     tweemux on someuser@somehost.org 3322
 
-Then you might consider doing adding a some ~/.ssh/config goodness:
+…you might consider doing adding a some ~/.ssh/config goodness:
 
     Host smh
       Hostname somehost
@@ -109,25 +124,9 @@ There are a few solutions:
   * A better alternative is to sign up for a [SIP account](https://ekiga.net/), then get a [SIP client](https://en.wikipedia.org/wiki/List_of_SIP_software#Clients). For Linux, I use (Ekiga)[https://en.wikipedia.org/wiki/Ekiga), and for OS X I use [Telephone.app](http://www.tlphn.com/).
   * Don't forget, if you can't get the Internetty stuff to work, there's always calling each other on cell phones.
 
-## TODO
+## More
 
-# PeopleAdmin/tweemux open issues
-  27: `tweemux` with no commandline arguments produces ugly error.
-  25: 1.8 + System-wide install
-  23: `tweemux host` from within session should upgrade to shareable
-  22: Provide higher-level window/font sync functionality
-  21: 'tweemux capabilities at ___'
-  19: If tmux isn't in the path when you SSH in, nothing will work. 5
-  18: Rogue Mode 3
-  17: Mention Google Voice/Hangouts 1
-  16: Promote regular tmux session to tweemux
-  15: Guest usage to connect to a different socket path
-  14: Add pseudo_restart of 'retry'
-  12: Mosh possible
-  11: Basics of Tmux
-   8: Port fw without ssh [enhancement] [question]
-   7: adduser/useradd call [enhancement]
-   4: brew install someurl [Mac]
+One of the aims of this script is to be convenient. Another of its aims is to be transparent (read: loud) about what it's doing. None of the parts of this are inherently complicated, and we'd like to make sure you can wean yourself off of this if you ever want to. Most of the commands it runs are visible, and you can paste them directly into a shell without using tweemux at all.
 
 ## Thanks to
 
