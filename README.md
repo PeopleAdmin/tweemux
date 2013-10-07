@@ -45,7 +45,8 @@ After that, you can install the 'keyholes' for this user from Github. This
 means they will be able to get in without manually typing a password, just like
 when they `git push` to Github:
 
-    tweemux hubkey cirwin github: ConradIrwin
+    tweemux hubkey cirwin ConradIrwin
+    # where "cirwin" is the local user name and "ConradIrwin" is their github user name
     # or, if their Unix username is their Github username, there's a shorthand:
     tweemux hubkey rking
 
