@@ -107,10 +107,6 @@ Your options are:
 * Use a machine on the Internet, that you both ssh into that. Can work very well, but the big downside is that you now have two lagged users rather than only one.
 * SSH port forward. This is my favorite, but the downside is that you have to have access to a shell account somewhere public. This is where `tweemux forward local 22 from somebox.com 2323` comes in.
 
-## No Public Box?
-
-If you don't have a public SSH account (like the way I use sharpsaw.org, above), let me know ( i-am-stuck@sharpsaw.org ). We'll solve that.
-
 ## Comms
 
 Once you've shared the tmux session, you've got a lot. But you still need more bandwidth with your pair.
